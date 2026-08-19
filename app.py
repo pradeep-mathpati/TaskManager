@@ -10,7 +10,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-producti
 # Simple in-memory store (no database needed - perfect for demo/testing)
 tasks = [
     {"id": 1, "title": "Buy groceries", "status": "pending", "priority": "high", "created_at": "2026-08-01"},
-    {"id": 2, "title": "Read a book", "status": "done", "priority": "low", "created_at": "2026-08-02"},
+   # {"id": 2, "title": "Read a book", "status": "done", "priority": "low", "created_at": "2026-08-02"},
     {"id": 3, "title": "Write tests", "status": "pending", "priority": "medium", "created_at": "2026-08-03"},
 ]
 next_id = 4

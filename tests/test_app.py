@@ -67,9 +67,9 @@ def test_get_single_task(client):
     assert data["title"] == "Test task one"
 
 
-#def test_get_task_not_found(client):
-#    r = client.get("/api/tasks/999")
-#    assert r.status_code == 404
+def test_get_task_not_found(client):
+    r = client.get("/api/tasks/999")
+    assert r.status_code == 404
 
 
 # ── POST create task ──────────────────────────────────────────────────────────
