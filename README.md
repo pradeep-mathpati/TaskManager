@@ -1,4 +1,4 @@
-# Task Manager — Python Demo App 
+# Task Manager — Python Demo App.
 
 A simple Python Flask web application built for the **Tricentis AI Workspace pipeline demo**.  
 Has both a **web UI** and a **REST API** — perfect for Tosca (UI testing) and NeoLoad (API performance testing).
