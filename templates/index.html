@@ -49,32 +49,32 @@
     <h1>TriAIlign-TaskManager</h1>
     <div class="user-info">
       <span>{{ username }}</span>
-      <a href="{{ url_for('logout') }}">Log out</a>
+      <a href="{{ url_for('logout') }}" id="btn-logout">Log out</a>
     </div>
   </header>
   <div class="container">
 
-    <form class="add-form" action="/add" method="post">
-      <input type="text" name="title" placeholder="Add a new task..." required>
-      <select name="priority">
+    <form class="add-form" id="form-add-task" action="/add" method="post">
+      <input type="text" name="title" id="task-title-input" placeholder="Add a new task..." required>
+      <select name="priority" id="task-priority-select">
         <option value="high">High priority</option>
         <option value="medium" selected>Medium priority</option>
         <option value="low">Low priority</option>
       </select>
-      <button type="submit">+ Add Task</button>
+      <button type="submit" id="btn-add-task">+ Add Task</button>
     </form>
 
     {% set total = tasks|length %}
     {% set done = tasks|selectattr("status","equalto","done")|list|length %}
     {% set pending = total - done %}
-    <div class="stats">
-      <div class="stat"><div class="num">{{ total }}</div><div class="lbl">Total tasks</div></div>
-      <div class="stat"><div class="num">{{ pending }}</div><div class="lbl">Pending</div></div>
-      <div class="stat"><div class="num">{{ done }}</div><div class="lbl">Completed</div></div>
+    <div class="stats" id="stats-container">
+      <div class="stat" id="stat-total"><div class="num" id="stat-total-count">{{ total }}</div><div class="lbl">Total tasks</div></div>
+      <div class="stat" id="stat-pending"><div class="num" id="stat-pending-count">{{ pending }}</div><div class="lbl">Pending</div></div>
+      <div class="stat" id="stat-completed"><div class="num" id="stat-completed-count">{{ done }}</div><div class="lbl">Completed</div></div>
     </div>
 
     {% if tasks %}
-    <table>
+    <table id="tasks-table">
       <thead>
         <tr><th>#</th><th>Title</th><th>Priority</th><th>Status</th><th>Created</th><th>Actions</th></tr>
       </thead>
@@ -88,16 +88,16 @@
           <td style="color:#aaa">{{ task.created_at }}</td>
           <td class="actions">
             {% if task.status == "pending" %}
-            <a href="/complete/{{ task.id }}">✓ Done</a>
+            <a href="/complete/{{ task.id }}" id="btn-complete-{{ task.id }}" class="btn-complete">✓ Done</a>
             {% endif %}
-            <a href="/delete/{{ task.id }}" class="del">Delete</a>
+            <a href="/delete/{{ task.id }}" id="btn-delete-{{ task.id }}" class="del btn-delete">Delete</a>
           </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
     {% else %}
-    <div class="empty">No tasks yet — add one above</div>
+    <div class="empty" id="tasks-empty">No tasks yet — add one above</div>
     {% endif %}
 
     <div class="api-info">
